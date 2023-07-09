@@ -10,7 +10,7 @@ Possibly keep track of score.
 let computerChoice;
 let playerChoice;
 
-startGame(getPlayerChoice(), getComputerChoice());
+playRound(getPlayerChoice(), getComputerChoice());
 
 function getPlayerChoice() {
     playerChoice = prompt('What is your choice?');
@@ -29,5 +29,34 @@ function getComputerChoice() {
     }
 }
 
-function startGame(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
+    switch (playerSelection) {
+        case 'rock':
+            switch (computerSelection) {
+                case 'rock':
+                    return alert('Computer chose rock! It\'s a tie!');
+                case 'paper':
+                    return alert('Computer chose paper! You lose!');
+                case 'scissors':
+                    return alert('Computer chose scissors! You win!')
+            }
+        case 'paper':
+            switch (computerSelection) {
+                case 'rock':
+                    return alert('Computer chose rock! You win');
+                case 'paper':
+                    return alert('Computer chose paper! It\'s a tie!');
+                case 'scissors':
+                    return alert('Computer chose Scissors! You lose!')
+            }
+        case 'scissors':
+            switch (computerSelection) {
+                case 'rock':
+                    return alert('Computer chose rock! You lose');
+                case 'paper':
+                    return alert('Computer chose paper! You win!');
+                case 'scissors':
+                    return alert('Computer chose Scissors! It\'s a tie!');
+            }
+    }
 }
