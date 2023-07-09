@@ -8,14 +8,26 @@ Choice to play again.
 Possibly keep track of score.
 */
 let computerChoice;
+let playerChoice;
+
+startGame(getPlayerChoice(), getComputerChoice());
+
+function getPlayerChoice() {
+    playerChoice = prompt('What is your choice?');
+    playerChoice = playerChoice.toLowerCase();
+    return playerChoice;
+}
 
 function getComputerChoice() {
     let computerChoiceValue = Math.random();
     if (computerChoiceValue < 1/3) {
-        return computerChoice = 'Rock';
-    } else if  (1/3 < computerChoiceValue < 2/3) {
-        return computerChoice = 'Paper';
+        return computerChoice = 'rock';
+    } else if  (1/3 < computerChoiceValue && computerChoiceValue < 2/3) {
+        return computerChoice = 'paper';
     } else if (computerChoiceValue > 2/3) {
-        return computerChoice = 'Scissors';
+        return computerChoice = 'scissors';
     }
+}
+
+function startGame(playerSelection, computerSelection) {
 }
