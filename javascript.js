@@ -8,18 +8,10 @@ Choice to play again.
 Possibly keep track of score.
 */
 let computerChoice;
-let playerChoice;
 let score = 0;
 
 // Runs Rock, Paper, Scissors game
 // game();
-
-// Prompts for playerChoice
-function getPlayerChoice() {
-    playerChoice = prompt('What is your choice?');
-    playerChoice = playerChoice.toLowerCase();
-    return playerChoice;
-}
 
 // Generates computerChoice
 function getComputerChoice() {
@@ -70,10 +62,10 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Runs playRound() 5 times; tells player final score; option to play again by running game()
-function game() {
-    playRound(getPlayerChoice(), getComputerChoice());
+function game(playerChoice) {
+    playRound(playerChoice, getComputerChoice());
 }
 
 // Button event listener to start game when clicked
 const btns = document.querySelectorAll('button');
-btns.forEach(btn => btn.addEventListener('click', game));
+btns.forEach(btn => btn.addEventListener('click', event => game(event.target.id)));
