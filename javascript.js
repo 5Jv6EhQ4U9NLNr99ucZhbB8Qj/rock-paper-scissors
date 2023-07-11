@@ -1,12 +1,11 @@
 /* 
-Rock, Paper, Scissors! Logic
+Rock, Paper, Scissors!
 Player chooses to use rock, paper, or scissors.
-Computer will choose to use rock, paper, or scissors. Probability should be equal across the three options.
+Computer will choose to use rock, paper, or scissors based on probability.
 Script will compare player choice and Computer choice.
 Display win or lose depending on player-computer choice pairs.
-Choice to play again.
-Possibly keep track of score.
 */
+
 let computerChoice;
 let playerScore = 0;
 let computerScore = 0;
@@ -29,6 +28,7 @@ function playRound(playerSelection, computerSelection) {
         case 'rock':
             switch (computerSelection) {
                 case 'rock':
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose rock! It\'s a tie!';
                     break;
 
@@ -55,6 +55,7 @@ function playRound(playerSelection, computerSelection) {
                     break;
 
                 case 'paper':
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose paper! It\'s a tie!';
                     break;
 
@@ -81,24 +82,30 @@ function playRound(playerSelection, computerSelection) {
                     break;
 
                 case 'scissors':
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose Scissors! It\'s a tie!';
                     break;
             }
         break;
     }
-}
-
-// Runs playRound() 5 times; tells player final score; option to play again by running game()
-function game(playerChoice) {
-    playRound(playerChoice, getComputerChoice());
+    
+    if (playerScore === 5 | computerScore ===  5) {
+        if (playerScore === 5) {
+            messageBox.textContent = `You won ${playerScore} to ${computerScore}! Click to play again!`;
+        }
+        if (computerScore === 5) {
+            messageBox.textContent = `You lost ${playerScore} to ${computerScore}! Click to play again!`;
+        }
+        scoreBox.textContent = '';
+        playerScore = 0;
+        computerScore = 0;
+    }
 }
 
 // Button event listener to start game when clicked
 const btns = document.querySelectorAll('button');
-btns.forEach(btn => btn.addEventListener('click', event => game(event.target.id)));
+btns.forEach(btn => btn.addEventListener('click', event => playRound(event.target.id, getComputerChoice())));
 
-// Div containing messages
+// Div containing score/messages
 const messageBox = document.querySelector('#message-box');
-
-// Div containing score
 const scoreBox = document.querySelector('#score-box');
