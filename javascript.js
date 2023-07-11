@@ -12,7 +12,7 @@ let playerChoice;
 let score = 0;
 
 // Runs Rock, Paper, Scissors game
-game();
+// game();
 
 // Prompts for playerChoice
 function getPlayerChoice() {
@@ -71,12 +71,9 @@ function playRound(playerSelection, computerSelection) {
 
 // Runs playRound() 5 times; tells player final score; option to play again by running game()
 function game() {
-    for (let roundCounter = 0; roundCounter < 5; roundCounter++) {
-        playRound(getPlayerChoice(), getComputerChoice());
-    }
-    if (confirm(`You won ${score}/5 rounds! Play again?`)) {
-        return game();
-    } else {
-        return alert('Thanks for playing!');
-    }
+    playRound(getPlayerChoice(), getComputerChoice());
 }
+
+// Button event listener to start game when clicked
+const btns = document.querySelectorAll('button');
+btns.forEach(btn => btn.addEventListener('click', game));
