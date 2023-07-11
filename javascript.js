@@ -10,9 +10,6 @@ Possibly keep track of score.
 let computerChoice;
 let score = 0;
 
-// Runs Rock, Paper, Scissors game
-// game();
-
 // Generates computerChoice
 function getComputerChoice() {
     let computerChoiceValue = Math.random();
@@ -27,36 +24,46 @@ function getComputerChoice() {
 
 // Starts a round and determines win/lose based on playerChoice and computerChoice; tracks winning through score++
 function playRound(playerSelection, computerSelection) {
+    console.log(playerSelection, computerSelection)
     switch (playerSelection) {
         case 'rock':
             switch (computerSelection) {
                 case 'rock':
-                    return alert('Computer chose rock! It\'s a tie!');
+                    messageBox.textContent = 'Computer chose rock! It\'s a tie!';
+                    break;
                 case 'paper':
-                    return alert('Computer chose paper! You lose!');
+                    messageBox.textContent = 'Computer chose paper! You lose!';
+                    break;
                 case 'scissors':
                     score++;
-                    return alert('Computer chose scissors! You win!')
+                    messageBox.textContent = 'Computer chose scissors! You win!';
+                    break;
             }
         case 'paper':
             switch (computerSelection) {
                 case 'rock':
                     score++;
-                    return alert('Computer chose rock! You win');
+                    messageBox.textContent = 'Computer chose rock! You win';
+                    break;
                 case 'paper':
-                    return alert('Computer chose paper! It\'s a tie!');
+                    messageBox.textContent = 'Computer chose paper! It\'s a tie!';
+                    break;
                 case 'scissors':
-                    return alert('Computer chose Scissors! You lose!')
+                    messageBox.textContent = 'Computer chose Scissors! You lose!';
+                    break;
             }
         case 'scissors':
             switch (computerSelection) {
                 case 'rock':
-                    return alert('Computer chose rock! You lose');
+                    messageBox.textContent = 'Computer chose rock! You lose';
+                    break;
                 case 'paper':
                     score++;
-                    return alert('Computer chose paper! You win!');
+                    messageBox.textContent = 'Computer chose paper! You win!';
+                    break;
                 case 'scissors':
-                    return alert('Computer chose Scissors! It\'s a tie!');
+                    messageBox.textContent = 'Computer chose Scissors! It\'s a tie!';
+                    break;
             }
     }
 }
@@ -69,3 +76,6 @@ function game(playerChoice) {
 // Button event listener to start game when clicked
 const btns = document.querySelectorAll('button');
 btns.forEach(btn => btn.addEventListener('click', event => game(event.target.id)));
+
+// Div containing score/messages
+const messageBox = document.querySelector('#messageBox');
