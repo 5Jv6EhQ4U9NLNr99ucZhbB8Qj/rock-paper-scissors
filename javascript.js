@@ -8,7 +8,8 @@ Choice to play again.
 Possibly keep track of score.
 */
 let computerChoice;
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 // Generates computerChoice
 function getComputerChoice() {
@@ -23,48 +24,67 @@ function getComputerChoice() {
 }
 
 // Starts a round and determines win/lose based on playerChoice and computerChoice; tracks winning through score++
-function playRound(playerSelection, computerSelection) {
-    console.log(playerSelection, computerSelection)
+function playRound(playerSelection, computerSelection) {   
     switch (playerSelection) {
         case 'rock':
             switch (computerSelection) {
                 case 'rock':
                     messageBox.textContent = 'Computer chose rock! It\'s a tie!';
                     break;
+
                 case 'paper':
+                    computerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose paper! You lose!';
                     break;
+
                 case 'scissors':
-                    score++;
+                    playerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose scissors! You win!';
                     break;
             }
+        break;
+
         case 'paper':
             switch (computerSelection) {
                 case 'rock':
-                    score++;
+                    playerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose rock! You win';
                     break;
+
                 case 'paper':
                     messageBox.textContent = 'Computer chose paper! It\'s a tie!';
                     break;
+
                 case 'scissors':
+                    computerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose Scissors! You lose!';
                     break;
             }
+        break;
+
         case 'scissors':
             switch (computerSelection) {
                 case 'rock':
+                    computerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose rock! You lose';
                     break;
+
                 case 'paper':
-                    score++;
+                    playerScore++;
+                    scoreBox.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
                     messageBox.textContent = 'Computer chose paper! You win!';
                     break;
+
                 case 'scissors':
                     messageBox.textContent = 'Computer chose Scissors! It\'s a tie!';
                     break;
             }
+        break;
     }
 }
 
@@ -77,5 +97,8 @@ function game(playerChoice) {
 const btns = document.querySelectorAll('button');
 btns.forEach(btn => btn.addEventListener('click', event => game(event.target.id)));
 
-// Div containing score/messages
-const messageBox = document.querySelector('#messageBox');
+// Div containing messages
+const messageBox = document.querySelector('#message-box');
+
+// Div containing score
+const scoreBox = document.querySelector('#score-box');
